@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POST 请求</title>
+    <style>
+      #result {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="result"></div>
+    <script src="../base.js"></script>
+    <script>
+      const result = document.getElementById("result")
+      result.addEventListener("mouseover", function () {
+        // 创建对象 readystate0
+        const xhr = new XMLHttpRequest()
+        // 2.初始化 设置请求方法和url readystate1
+        xhr.open("POST", "http://127.0.0.1:8000/server")
+        //设置请求体.send()内容的类型
+        xhr.setRequestHeader( "Content-Type", "application/x-www-form-urlencoded" )
+
+        // 自定义属性
+        //直接写会报错 须在后台（base.js）设置Access-Control-Allow-Headers
+        xhr.setRequestHeader("name", "ajax-test")
+        // 3.发送 readystate2
+        xhr.send("a:100&b:200&c:300")
+        // xhr.send('a=100&b=200&c=300')
+
+        // 4.事件绑定 处理服务器端返回的结果
+        // on:when...
+        // readyState:xhr的状态 ：
+        // 0=初始化；
+        // 1=open方法已执行；
+        // 2=send;
+        // 3=服务器端返回部分接口
+        // 4=服务器端返回全部结果
+        // change:改变的时候触发
+
+        xhr.onreadystatechange = function () {
+          // 返回所有结果
+          if (xhr.readyState === 4) {
+            //   判断响应状态码 200 404 403 401 500
+            // 2xx=成功
+            if (xhr.status >= 200 && xhr.status < 300) {
+              // 处理服务端返回结果 行 头 空行 体
+              // 1.响应行
+              result.innerHTML += xhr.response //响应体
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
