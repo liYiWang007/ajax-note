@@ -19,9 +19,9 @@
     <script>
       const result = document.getElementById("result")
       result.addEventListener("mouseover", function () {
-        // 创建对象 readystate0
+        // 创建对象 readyState0
         const xhr = new XMLHttpRequest()
-        // 2.初始化 设置请求方法和url readystate1
+        // 2.初始化 设置请求方法和url readyState1
         xhr.open("POST", "http://127.0.0.1:8000/server")
         //设置请求体.send()内容的类型
         xhr.setRequestHeader( "Content-Type", "application/x-www-form-urlencoded" )
@@ -29,7 +29,7 @@
         // 自定义属性
         //直接写会报错 须在后台（base.js）设置Access-Control-Allow-Headers
         xhr.setRequestHeader("name", "ajax-test")
-        // 3.发送 readystate2
+        // 3.发送 readyState2
         xhr.send("a:100&b:200&c:300")
         // xhr.send('a=100&b=200&c=300')
 

@@ -20,19 +20,26 @@ app.all("/server", (request, response) => {
   // app.post('/server',(request,response)=>{
   // 设置响应头 设置允许跨域
   response.setHeader("Access-Control-Allow-Origin", "*")
-  response.setRequestHeader("Access-Control-Allow-Headers", "*")
+  // 允许自定义响应头属性
+  response.setHeader("Access-Control-Allow-Headers", "*")
   // 设置响应体
   response.send("Hello Ajax POST")
 })
 
 // .all() 可以接受任类型请求 为了自定义header改的
 app.all("/json-server", (request, response) => {
-
   // 设置响应头 设置允许跨域
   response.setHeader("Access-Control-Allow-Origin", "*")
-  response.setRequestHeader("Access-Control-Allow-Headers", "*")
+  // 允许自定义响应头属性
+  response.setHeader("Access-Control-Allow-Headers", "*")
+
+  const data = {
+    name: "test",
+  }
+  // 转化为字符串
+  let str = JSON.stringify(data)
   // 设置响应体
-  response.send("Hello Ajax json-server")
+  response.send(str)
 })
 
 // 4.监听端口启动

@@ -21,16 +21,16 @@
       const btn = document.getElementById("btn")
       const result = document.getElementById("result")
       btn.onclick = function () {
-        // 创建对象 readystate0
+        // 创建对象 readyState0
         const xhr = new XMLHttpRequest()
-        // 2.初始化 设置请求方法和url readystate1
+        // 2.初始化 设置请求方法和url readyState1
         xhr.open("GET", "http://127.0.0.1:8000/server?a=100&b=200&c=300")
-        // 3.发送 readystate2
+        // 3.发送 readyState2
         xhr.send()
 
         // 4.事件绑定 处理服务器端返回的结果
         // on:when...
-        // readystate:xhr的状态 ：
+        // readyState:xhr的状态 ：
         // 0=初始化；
         // 1=open方法已执行；
         // 2=send;
