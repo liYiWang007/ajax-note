@@ -36,7 +36,7 @@ app.all("/json-server", (request, response) => {
   const data = {
     name: "test",
   }
-  
+
   // 转化为字符串
   let str = JSON.stringify(data)
   // 设置响应体
@@ -45,11 +45,22 @@ app.all("/json-server", (request, response) => {
 
 // IE清缓存
 app.get("/ie", (request, response) => {
-    // 设置响应头 设置允许跨域
-    response.setHeader("Access-Control-Allow-Origin", "*")
+  // 设置响应头 设置允许跨域
+  response.setHeader("Access-Control-Allow-Origin", "*")
+  // 设置响应体
+  response.send("Hello IE CACHE")
+})
+
+// 请求超时
+app.get("/delay", (request, response) => {
+  // 设置响应头 设置允许跨域
+  response.setHeader("Access-Control-Allow-Origin", "*")
+
+  setTimeout(() => {
     // 设置响应体
-    response.send("Hello IE CACHE")
-  })
+    response.send("来不了啦")
+  },3000)
+})
 
 // 4.监听端口启动
 app.listen(8000, () => {
