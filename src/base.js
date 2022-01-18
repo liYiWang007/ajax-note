@@ -62,22 +62,38 @@ app.get("/delay", (request, response) => {
     response.send("来不了啦")
   }, 3000)
 })
+
 // jquery-ajax 服务
 // .all()=get/post等等
 app.all("/jquery-server", (request, response) => {
+    // 设置响应头 设置允许跨域
+    response.setHeader("Access-Control-Allow-Origin", "*")
+    // 允许自定义响应头属性
+    response.setHeader("Access-Control-Allow-Headers", "*")
+    
+    const data = {
+      name: "query-ajax",
+    }
+    // 设置响应体，需要转化为json
+    response.send(JSON.stringify(data))
+    // 设置响应体
+  //   response.send("jquery-ajax")
+  })
+
+// ajax-axios 服务
+app.all("/axios-server", (request, response) => {
   // 设置响应头 设置允许跨域
   response.setHeader("Access-Control-Allow-Origin", "*")
   // 允许自定义响应头属性
   response.setHeader("Access-Control-Allow-Headers", "*")
   
   const data = {
-    name: "query-ajax",
+    name: "axios-server",
   }
   // 设置响应体，需要转化为json
   response.send(JSON.stringify(data))
-  // 设置响应体
-//   response.send("jquery-ajax")
 })
+
 
 // 4.监听端口启动
 app.listen(8000, () => {
