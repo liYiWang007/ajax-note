@@ -67,8 +67,16 @@ app.get("/delay", (request, response) => {
 app.all("/jquery-server", (request, response) => {
   // 设置响应头 设置允许跨域
   response.setHeader("Access-Control-Allow-Origin", "*")
+  // 允许自定义响应头属性
+  response.setHeader("Access-Control-Allow-Headers", "*")
+  
+  const data = {
+    name: "query-ajax",
+  }
+  // 设置响应体，需要转化为json
+  response.send(JSON.stringify(data))
   // 设置响应体
-  response.send("jquery-ajax")
+//   response.send("jquery-ajax")
 })
 
 // 4.监听端口启动
