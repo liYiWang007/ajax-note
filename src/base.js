@@ -26,7 +26,8 @@ app.all("/server", (request, response) => {
   response.send("Hello Ajax POST")
 })
 
-// .all() 可以接受任类型请求 为了自定义header改的
+// 为了自定义header改的 .all() 可以接受任类型请求
+// .all()=get/post等等
 app.all("/json-server", (request, response) => {
   // 设置响应头 设置允许跨域
   response.setHeader("Access-Control-Allow-Origin", "*")
@@ -59,7 +60,15 @@ app.get("/delay", (request, response) => {
   setTimeout(() => {
     // 设置响应体
     response.send("来不了啦")
-  },3000)
+  }, 3000)
+})
+// jquery-ajax 服务
+// .all()=get/post等等
+app.all("/jquery-server", (request, response) => {
+  // 设置响应头 设置允许跨域
+  response.setHeader("Access-Control-Allow-Origin", "*")
+  // 设置响应体
+  response.send("jquery-ajax")
 })
 
 // 4.监听端口启动

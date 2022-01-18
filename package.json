@@ -1,9 +1,10 @@
 {
   "dependencies": {
+    "anywhere": "^1.5.0",
     "express": "^4.17.2"
   },
   "scripts": {
-    "dev": "nodemon ./src/base.js"
+    "dev": "nodemon --delay 1 ./src/base.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

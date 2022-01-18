@@ -24,22 +24,20 @@
         // 创建对象 readyState0
         const xhr = new XMLHttpRequest()
 
-// 设置2秒后放弃获取
-xhr.timeout=2000
-// 设置获取失败后的回调函数
-xhr.ontimeout=function(){
-    alert('网络异常，请稍后尝试')
-}
-// 没有网络时
-xhr.onerror=function(){
-    alert('您的网络似乎出现了些问题')
-
-}
-// 2.初始化 设置请求方法和url readyState1
-xhr.open("GET", "http://127.0.0.1:8000/delay")
-// 3.发送 readyState2
-xhr.send()
-
+        // 设置2秒后放弃获取
+        xhr.timeout = 2000
+        // 设置获取失败后的回调函数
+        xhr.ontimeout = function () {
+          alert("网络异常，请稍后尝试")
+        }
+        // 没有网络时
+        xhr.onerror = function () {
+          alert("您的网络似乎出现了些问题")
+        }
+        // 2.初始化 设置请求方法和url readyState1
+        xhr.open("GET", "http://127.0.0.1:8000/delay")
+        // 3.发送 readyState2
+        xhr.send()
         // 4.事件绑定 处理服务器端返回的结果
         // on:when...
         // readyState:xhr的状态 ：
@@ -49,15 +47,14 @@ xhr.send()
         // 3=服务器端返回部分接口
         // 4=服务器端返回全部结果
         // change:改变的时候触发
-        xhr.onreadystatechange=function(){
-            if(xhr.readyState===4){
-                if(xhr.status>=200&&xhr.status<300){
-                    result.innerHTML=xhr.response
-                }
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              result.innerHTML = xhr.response
             }
+          }
         }
       })
-
     </script>
   </body>
 </html>
