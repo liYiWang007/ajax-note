@@ -94,6 +94,34 @@ app.all("/axios-server", (request, response) => {
   response.send(JSON.stringify(data))
 })
 
+// ajax-axios 服务
+app.all("/axios-server", (request, response) => {
+  // 设置响应头 设置允许跨域
+  response.setHeader("Access-Control-Allow-Origin", "*")
+  // 允许自定义响应头属性
+  response.setHeader("Access-Control-Allow-Headers", "*")
+  
+  const data = {
+    name: "axios-server",
+  }
+  // 设置响应体，需要转化为json
+  response.send(JSON.stringify(data))
+})
+
+// fetch 服务
+app.all("/fetch-server", (request, response) => {
+  // 设置响应头 设置允许跨域
+  response.setHeader("Access-Control-Allow-Origin", "*")
+  // 允许自定义响应头属性
+  response.setHeader("Access-Control-Allow-Headers", "*")
+  
+  const data = {
+    name: "Hello fetch",
+  }
+  // 设置响应体，需要转化为json
+  response.send(JSON.stringify(data))
+})
+
 
 // 4.监听端口启动
 app.listen(8000, () => {

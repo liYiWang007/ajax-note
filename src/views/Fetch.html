@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch</title>
+    <script type="text/javascript" crossorigin="anonymous"
+        src="https://cdn.bootcdn.net/ajax/libs/axios/0.24.0/axios.min.js"></script>
+</head>
+
+<body>
+    <button class="btn">GET</button>
+
+<script>
+    const btn = document.querySelector('.btn')
+    btn.onclick = function () {
+        // url头可以直接拼接 ?vip=1
+        fetch("http://127.0.0.1:8000/fetch-server?vip=1",// url参数 出现在地址栏里
+            {
+                method: 'POST',
+                // 请求头，出现在调试后台里
+                headers: {
+                    name: 'axios-get',
+                    age: 2
+                },
+                body: 'username=admin&password=admin'
+            }).then(Response => {
+                // console.log(Response) //转化为json前
+                // 转化为json类型
+                return Response.json()
+            }).then(data => {
+                // 获取的数据比ajax()更详细
+                console.log(data)
+            })
+    }
+</script>
+</body>
+
+</html>
