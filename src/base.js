@@ -166,6 +166,10 @@ app.all("/jquery-jsonp", (request, response) => {
 
 // JSONP 跨域5 cors
 app.all("/cors-server", (request, response) => {
+  // 设置响应头 设置允许跨域
+  response.setHeader("Access-Control-Allow-Origin", "*")
+  //只允许某个url发送跨域请求
+  //response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500")
   const data = {
     name: "hello cors",
     city: ["广州", "北京", "上海"],
