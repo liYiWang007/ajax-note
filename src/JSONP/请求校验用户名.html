@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原生jsonp发送ajax请求校验用户名</title>
+
+</head>
+
+<body>
+用户名：<input id="user" type="text" placeholder="请输入用户名">
+<p id="msg" style="color:#f00"></p>
+<script>
+    const $input = document.getElementById('user')
+    const $p = document.getElementById('msg')
+
+    function handleD(data) {
+        $input.style.border = '1px solid #f00'
+        $p.innerHTML = data.msg
+    }
+
+    // onblur=失去焦点
+    $input.addEventListener('blur', function () {
+        let username = this.value
+        // 1.创建script标签
+        const script = document.createElement('script')
+        // 2.设置src
+        script.src = 'http://127.0.0.1:8000/confirm-username'
+        // 3.把script标签插入文档内
+        document.body.appendChild(script)
+    })
+</script>
+
+</body>
+
+</html>

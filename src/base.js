@@ -67,19 +67,19 @@ app.get("/delay", (request, response) => {
 // jquery-ajax 服务
 // .all()=get/post等等
 app.all("/jquery-server", (request, response) => {
-    // 设置响应头 设置允许跨域
-    response.setHeader("Access-Control-Allow-Origin", "*")
-    // 允许自定义响应头属性
-    response.setHeader("Access-Control-Allow-Headers", "*")
-    
-    const data = {
-      name: "query-ajax",
-    }
-    // 设置响应体，需要转化为json
-    response.send(JSON.stringify(data))
-    // 设置响应体
+  // 设置响应头 设置允许跨域
+  response.setHeader("Access-Control-Allow-Origin", "*")
+  // 允许自定义响应头属性
+  response.setHeader("Access-Control-Allow-Headers", "*")
+
+  const data = {
+    name: "query-ajax",
+  }
+  // 设置响应体，需要转化为json
+  response.send(JSON.stringify(data))
+  // 设置响应体
   //   response.send("jquery-ajax")
-  })
+})
 
 // ajax-axios 服务
 app.all("/axios-server", (request, response) => {
@@ -87,7 +87,7 @@ app.all("/axios-server", (request, response) => {
   response.setHeader("Access-Control-Allow-Origin", "*")
   // 允许自定义响应头属性
   response.setHeader("Access-Control-Allow-Headers", "*")
-  
+
   const data = {
     name: "axios-server",
   }
@@ -101,7 +101,7 @@ app.all("/axios-server", (request, response) => {
   response.setHeader("Access-Control-Allow-Origin", "*")
   // 允许自定义响应头属性
   response.setHeader("Access-Control-Allow-Headers", "*")
-  
+
   const data = {
     name: "axios-server",
   }
@@ -115,7 +115,7 @@ app.all("/fetch-server", (request, response) => {
   response.setHeader("Access-Control-Allow-Origin", "*")
   // 允许自定义响应头属性
   response.setHeader("Access-Control-Allow-Headers", "*")
-  
+
   const data = {
     name: "Hello fetch",
   }
@@ -132,15 +132,49 @@ app.all("/fetch-server", (request, response) => {
 // })
 // JSONP 跨域2
 app.all("/jsonp-server", (request, response) => {
-
-    const data={
-        name:'跨域原理 来自8000端口的jsonp'
-    }
-    let str=JSON.stringify(data)
+  const data = {
+    name: "跨域原理 来自8000端口的jsonp",
+  }
+  let str = JSON.stringify(data)
   // 设置响应体，返回函数调用
   response.end(`handleD(${str})`)
 })
 
+// JSONP 跨域3 校验用户名字
+app.all("/confirm-username", (request, response) => {
+  const data = {
+    exist: 1,
+    msg: "用户名已存在",
+  }
+  let str = JSON.stringify(data)
+  // 设置响应体，返回函数调用
+  response.end(`handleD(${str})`)
+})
+
+// JSONP 跨域4 jquery
+app.all("/jquery-jsonp", (request, response) => {
+  const data = {
+    name: "hello jquery-jsonp",
+    city: ["广州", "北京", "上海"],
+  }
+  let str = JSON.stringify(data)
+  //接受callback 参数
+  let cb = request.query.callback
+  // 设置响应体，返回函数调用
+  response.send(`${cb}(${str})`)
+})
+
+// JSONP 跨域5 cors
+app.all("/cors-server", (request, response) => {
+  const data = {
+    name: "hello cors",
+    city: ["广州", "北京", "上海"],
+  }
+  let str = JSON.stringify(data)
+
+  // 设置响应体，返回函数调用
+  response.send("hello cors")
+})
 
 // 4.监听端口启动
 app.listen(8000, () => {
